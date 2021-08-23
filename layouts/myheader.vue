@@ -140,14 +140,15 @@ export default {
       userInfo: {
         phone: '',
         code: '',
-        openid: ''
+        openid: '',
       },
 
       dialogUserFormVisible: false,
       // 弹出层相关属性
       dialogAtrr:defaultDialogAtrr,
 
-      name: '' // 用户登录显示的名称
+      name: '',   // 用户登录显示的名称
+      hosname: ''
     }
   },
 
@@ -320,16 +321,17 @@ export default {
       }
     },
 
-    // 搜索
-    querySearchAsync(queryString, cb) {
-      if(queryString == '') return
-      hospitalApi.getByHosname(queryString).then(response => {
-        for (let i = 0, len = response.data.length; i < len; i++) {
-          response.data[i].value = response.data[i].hosname
-        }
-        cb(response.data)
-      })
-    },
+    //在输入框输入值，弹出下拉框，显示相关内容
+    querySearchAsync(queryString, cb) {
+      this.searchObj = [];
+      if (queryString == "") return;
+      hospApi.getByHosname(queryString).then((response) => {
+        for (let i = 0, len = response.data.length; i < len; i++) {
+          response.data[i].value = response.data[i].hosname;
+        }
+        cb(response.data);
+      });
+    },
 
     handleSelect(item) {
       window.location.href = '/hospital/' + item.hoscode

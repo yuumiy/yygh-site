@@ -35,19 +35,19 @@
             <div class="filter-wrapper">
               <span class="label">等级：</span>
               <div class="condition-wrapper">
-                <span class="item v-link clickable" :class="hostypeActiveIndex == index ? 'selected' : ''" v-for="(item,index) in hostypeList" :key="item.id" @click="hostypeSelect(item.value, index)">{{ item.name }}</span>
+                <span class="item v-link clickable" :class="hostypeActiveIndex == index ? 'selected' : ''" v-for="(item,index) in hostypeList" :key="index" @click="hostypeSelect(item.value, index)">{{ item.name }}</span>
               </div>
             </div>
             <div class="filter-wrapper">
               <span class="label">地区：</span>
               <div class="condition-wrapper">
-                <span class="item v-link clickable" :class="provinceActiveIndex == index ? 'selected' : ''" v-for="(item,index) in districtList" :key="item.id" @click="districtSelect(item.value, index)">{{ item.name }}</span>
+                <span class="item v-link clickable" :class="provinceActiveIndex == index ? 'selected' : ''" v-for="(item,index) in districtList" :key="index" @click="districtSelect(item.value, index)">{{ item.name }}</span>
               </div>
             </div>
           </div>
         </div>
         <div class="v-scroll-list hospital-list">
-          <div class="v-card clickable list-item" v-for="item in list" :key="item.id">
+          <div class="v-card clickable list-item" v-for="(item,index) in list" :key="index">
             <div class="">
               <div class="hospital-list-item hos-item" index="0" @click="show(item.hoscode)">
                 <div class="wrapper">
@@ -152,6 +152,7 @@
 import hospitalApi from '@/api/hosp/hospital'
 import dictApi from '@/api/cmn/dict'
 export default {
+  //服务端渲染异步，显示医院列表
   // asyncData：渲染组件之前异步获取数据
   asyncData({ params, error }) {
     return hospitalApi.getPageList(1, 10, null).then(response => {
@@ -168,9 +169,9 @@ export default {
       page: 1,
       limit: 10,
 
-      hosname: '',
-      hostypeList: [],
-      districtList: [],
+      hosname: '',  //医院名称
+      hostypeList: [],  //医院等级集合
+      districtList: [],  //地区集合
 
       hostypeActiveIndex: 0,
       provinceActiveIndex: 0
@@ -198,15 +199,16 @@ export default {
       dictApi.findByDictCode("Hostype").then(response => {
         this.hostypeList = []
         this.hostypeList.push({"name":"全部", "value":""})
+        //把接口返回数据，添加到hostypeList
         for(let i in response.data){
-          this.hostypeList.push(response.data[i]);
+          this.hostypeList.push(response.data[i])
         }
       })
-      dictApi.findByDictCode('Beijin').then(response => {
+      dictApi.findByDictCode('Beijing').then(response => {
         this.districtList = []
         this.districtList.push({"name":"全部", "value":""})
         for(let i in response.data){
-          this.districtList.push(response.data[i]);
+          this.districtList.push(response.data[i])
         }
       })
     },
@@ -227,6 +229,7 @@ export default {
       }
     },
 
+    //查询医院列表
     getList() {
       hospitalApi.getPageList(this.page, this.limit, this.searchObj).then(response => {
         for(let i in response.data.content){
@@ -236,6 +239,7 @@ export default {
       })
     },
 
+    //在输入框输入值，弹出下拉框，显示相关内容
     querySearchAsync(queryString, cb) {
       this.searchObj = []
       if(queryString == '') return
@@ -247,10 +251,12 @@ export default {
       })
     },
 
+    //在下拉框选择某一个内容，执行下面方法，跳转到详情页面中
     handleSelect(item) {
       window.location.href = '/hospital/' + item.hoscode
     },
 
+    //根据医院等级查询
     hostypeSelect(hostype, index) {
       this.list = []
       this.page = 1
@@ -259,6 +265,7 @@ export default {
       this.getList();
     },
 
+    //根据地区查询
     districtSelect(districtCode, index) {
       this.list = []
       this.page = 1
