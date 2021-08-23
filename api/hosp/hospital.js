@@ -18,13 +18,15 @@ export default {
         })
     },
 
+    //根据医院编号查询医院详情
     show(hoscode) {
         return request({
-            url: `${api_name}/${hoscode}`,
+            url: `${api_name}/findHospDetail/${hoscode}`,
             method: 'get'
         })
     },
 
+    //根据医院编号查询科室信息
     findDepartment(hoscode) {
         return request({
             url: `${api_name}/department/${hoscode}`,

@@ -2,7 +2,7 @@
   <div class="header-container">
     <div class="wrapper">
       <!-- logo -->
-      <div class="left-wrapper v-link selected">
+      <div class="left-wrapper v-link selected clickable" @click="show()">
         <img style="width: 50px" width="50" height="50" src="~assets/images/logo.png">
         <span class="text">尚医通 预约挂号统一平台</span>
       </div>
@@ -357,6 +357,11 @@ export default {
     phoneLogin() {
       this.dialogAtrr.showLoginType = 'phone'
       this.showLogin()
+    },
+    
+    //logo首页跳转
+    show() {
+      window.location.href = '/'
     }
   }
 }

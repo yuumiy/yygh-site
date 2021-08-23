@@ -114,8 +114,8 @@ export default {
   },
 
   created() {
+    //获取路径hoscode
     this.hoscode = this.$route.params.hoscode
-
     this.init()
   },
 
