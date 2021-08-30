@@ -55,26 +55,4 @@ export default {
         })
     }
 
-    // getHospitalInfo(hoscode) {
-    //   return request({
-    //     url: `${api_name}/getHospitalInfo/${hoscode}`,
-    //     method: 'get'
-    //   })
-    // },
-    //
-    // getBookingScheduleRule(page, limit, hoscode, depcode) {
-    //   return request({
-    //     url: `${api_name}/auth/getBookingScheduleRule/${page}/${limit}/${hoscode}/${depcode}`,
-    //     method: 'get'
-    //   })
-    // },
-    //
-    // findScheduleList(hoscode, depcode, workDate) {
-    //   return request({
-    //     url: `${api_name}/auth/findScheduleList/${hoscode}/${depcode}/${workDate}`,
-    //     method: 'get'
-    //   })
-    // },
-    //
-
 }
