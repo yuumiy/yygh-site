@@ -181,6 +181,7 @@ export default {
   methods: {
     loginCallback(name, token, openid) {
       // 打开手机登录层，绑定手机号，改逻辑与手机登录一致
+      //openid不为空，进行绑定手机号操作，即跳转手机号登录页
       if(openid != '') {
         this.userInfo.openid = openid
 

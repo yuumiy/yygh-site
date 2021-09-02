@@ -46,7 +46,7 @@
                     v-for="item in certificatesTypeList"
                     :key="item.value"
                     :label="item.name"
-                    :value="item.value">
+                    :value="item.name">
                   </el-option>
                 </el-select>
               </el-form-item>
@@ -90,7 +90,7 @@
                 </div>
               </el-form-item>
               <el-form-item prop="name" label="证件类型：">
-                {{ userInfo.param.certificatesTypeString }}
+                {{ userInfo.certificatesType }}
               </el-form-item>
               <el-form-item prop="name" label="证件号码：">
                 {{ userInfo.certificatesNo }}
@@ -128,7 +128,7 @@ export default {
     return {
       userAuah: defaultForm,
       certificatesTypeList: [],
-      fileUrl:'http://localhost/api/oss/file/fileUpload?fileHost=userAuah',
+      fileUrl:'http://localhost:8000/api/oss/file/fileUpload',
 
       userInfo: {
         param: {}
