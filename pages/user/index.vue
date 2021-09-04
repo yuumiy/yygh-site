@@ -8,7 +8,7 @@
         <span class="v-link selected dark" onclick="javascript:window.location='/user'">实名认证 </span>
       </div>
       <div class="nav-item">
-        <span class="v-link selected dark" onclick="javascript:window.location='/order'"> 挂号订单 </span>
+        <span class="v-link clickable dark" onclick="javascript:window.location='/order'"> 挂号订单 </span>
       </div>
       <div class="nav-item ">
         <span class="v-link clickable dark" onclick="javascript:window.location='/patient'"> 就诊人管理 </span>

@@ -98,7 +98,7 @@
                 ></el-cascader>
               </el-form-item>
               <el-form-item prop="address" label="详细地址：" >
-                <el-input v-model="patient.address" placeholder="应公安机关要求，请填写现真实住址" class="input v-input"/>
+                <el-input v-model="patient.address" placeholder="填写现真实住址" class="input v-input"/>
               </el-form-item>
             </el-form>
           </div>
